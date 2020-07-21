@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -20,10 +21,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class DemoTest {
     @Autowired
     private IUserDao userDao;
+    @Autowired
+    private Environment environment;
     @Test
     public void test1(){
         userDao.getIds().stream().forEach(n->{
             System.out.println(n.getId());
         });
+    }
+
+    @Test
+    public void test2(){
+        System.out.println(environment.getProperty("从application.properties取参数"));
     }
 }
