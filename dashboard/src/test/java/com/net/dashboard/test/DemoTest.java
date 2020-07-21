@@ -1,7 +1,10 @@
 package com.net.dashboard.test;
 
+import com.net.dashboard.dao.IUserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,9 +16,14 @@ import org.springframework.test.context.junit4.SpringRunner;
  **/
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@MapperScan("com.net.dashboard.dao")
 public class DemoTest {
+    @Autowired
+    private IUserDao userDao;
     @Test
     public void test1(){
-        System.out.println(1);
+        userDao.getIds().stream().forEach(n->{
+            System.out.println(n.getId());
+        });
     }
 }
