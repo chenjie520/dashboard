@@ -3,11 +3,18 @@ package com.net.dashboard.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.net.dashboard.config.ContentKey;
 import com.net.dashboard.util.HttpClientUtil;
+import com.net.dashboard.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthAuthzResponse;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.javacord.api.DiscordApi;
+import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.user.User;
+import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  *@Author chen_jie
@@ -71,10 +79,26 @@ public class AuthController {
             String dcId=userMap.get("id").toString();
             String dcName=userMap.get("username").toString()+"#"+userMap.get("discriminator").toString();
             System.out.println(data);
-            System.out.println(dcId);
-            System.out.println(dcName);
+            if(judgeUserStatus(dcId)){
+                System.out.println("当前用户在dcserver中");
+            }else{
+                System.out.println("当前用户不在dcserver中");
+            }
         } catch (OAuthProblemException e) {
             e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
         }
+    }
+
+    /**
+     * 通过dcId判断用户的状态
+     **/
+    public boolean judgeUserStatus(String dcId)throws Exception{
+        String token= ContentKey.TOKEN;
+        DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
+        CompletableFuture<User> userById = api.getUserById(dcId);
+        User user = userById.get();
+        return "ONLINE".equals(user.getStatus().toString().toUpperCase());
     }
 }
