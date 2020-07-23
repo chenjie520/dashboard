@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 
 public class ContentKey {
     public  static  String CLIENT_ID="709750085726240849";
+    public static String TOKEN="NzA5NzUwMDg1NzI2MjQwODQ5.Xxly1g.hNpds706kusPr6gOwTdc8LHk9Ec";
     public static final String CLIENT_SECRET="zZD6d_EeP4W2U8OA8M9wKqclZS9dh4uL";
     public static final String SCOPE="identify guilds.join";
 
     public static final String GRANT_TYPE="authorization_code";
 
-    public static final String OAUTH_CLIENT_CALLBACK="http://ae86.natapp1.cc/dashboard/auth/callback";
+    public static final String OAUTH_CLIENT_CALLBACK="http://3.88.243.220:8081/dashboard/auth/callback";
     public static final String OAUTH_CLIENT_AUTHORIZE="https://discord.com/oauth2/authorize";
     public static final String OAUTH_CLIENT_TOKEN="https://discord.com/api/oauth2/token";
 
