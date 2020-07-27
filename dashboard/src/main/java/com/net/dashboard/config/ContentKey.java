@@ -24,4 +24,11 @@ public class ContentKey {
     public static final String GET_USER_INFORMATION="https://discord.com/api/v6/users/@me";
 
 
+    /**
+    * netnut
+    */
+    public static final String NETNUT_LOGIN_EMAIL="ascdda4@gmail.com";
+    public static final String NETNUT_LOGIN_PASSWORD="bMXbMqlR";
+    public static final String NETNUT_GET_MY_USEAGE="https://reseller-api.netnut.io/api/aff/usage";
+
 }
