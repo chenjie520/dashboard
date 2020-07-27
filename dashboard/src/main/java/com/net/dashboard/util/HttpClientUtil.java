@@ -41,7 +41,9 @@ public class HttpClientUtil {
             // 创建http GET请求
             HttpGet httpGet = new HttpGet(uri);
             httpGet.setHeader("Content-type","application/x-www-form-urlencoded");
-            httpGet.addHeader("Authorization","Bearer "+token);
+            if(token!=null&&(!"".equals(token))){
+                httpGet.addHeader("Authorization","Bearer "+token);
+            }
             // 执行请求
             response = httpclient.execute(httpGet);
             // 判断返回状态是否为200
