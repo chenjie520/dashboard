@@ -30,5 +30,9 @@ public class ContentKey {
     public static final String NETNUT_LOGIN_EMAIL="ascdda4@gmail.com";
     public static final String NETNUT_LOGIN_PASSWORD="bMXbMqlR";
     public static final String NETNUT_GET_MY_USEAGE="https://reseller-api.netnut.io/api/aff/usage";
+    public static final String NETNUT_GET_ALL_CUSTOMERS="https://reports.netnut.io/api/aff/customers";
+    public static final String NETNUT_ADD_CUSTOMER="https://reseller-api.netnut.io/api/aff/customers";
+    public static final String NETNUT_ADD_FLOW_RATE="https://reseller-api.netnut.io/api/aff/customer/customer_id/allocate";
+
 
 }
