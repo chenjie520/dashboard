@@ -2,6 +2,8 @@ package com.net.dashboard.pojo;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  *@Author chen_jie
  *@Version 1.0
@@ -9,7 +11,11 @@ import lombok.Data;
  **/
 @Data
 public class User {
-    private String id;
-    //private String userName;
-    //private String userPassword;
+    private int id;
+    private String dcId;
+    private String email;
+    private String userName;
+    private String userPassword;
+    private String isInDc;      //是否在dc服务器中：1.在，2.不在
+    private Date createDate;
 }
