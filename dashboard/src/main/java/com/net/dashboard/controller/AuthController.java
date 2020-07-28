@@ -131,11 +131,11 @@ public class AuthController {
     /**
      * 通过dcId判断用户的状态
      **/
-    public boolean judgeUserStatus(String dcId)throws Exception{
+    public Boolean judgeUserStatus(String dcId)throws Exception{
         String token= ContentKey.TOKEN;
         DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
         CompletableFuture<User> userById = api.getUserById(dcId);
         User user = userById.get();
-        return "ONLINE".equals(user.getStatus().toString().toUpperCase());
+        return !user.getStatus().toString().equals("OFFLINE");
     }
 }
