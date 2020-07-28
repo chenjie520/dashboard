@@ -1,8 +1,10 @@
 package com.net.dashboard.dao;
 
 import com.net.dashboard.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -14,6 +16,11 @@ import java.util.List;
 @Mapper
 public interface IUserDao {
 
-    @Select("select id from user")
-    List<User> getIds();
+    @Select("select id,dc_id as dcId,is_in_dc as isInDc from user where dc_id=#{dcId}")
+    User selectUserByDcId(User user);
+
+    @Insert("insert into user(id,dc_id,email,user_name,user_password,is_in_dc,create_date)value(#{id},#{dcId},#{email},#{userName},#{userPassword},#{isInDc},#{createDate})")
+    int insertUser(User user);
+    @Update("update user set is_in_dc=#{isInDc} where dc_id=#{dcId}")
+    int updateUserIsInDc(User user);
 }
