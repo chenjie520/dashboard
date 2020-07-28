@@ -79,39 +79,24 @@ public class NetnutUtils {
         }
         return null;
     }
-    public void showCustomerServer(int customerId){
-        Map<String,String> params=new HashMap<>();
-        params.put("loginEmail",ContentKey.NETNUT_LOGIN_EMAIL);
-        params.put("loginPassword",ContentKey.NETNUT_LOGIN_PASSWORD);
-        params.put("customer_id",customerId+"");
-        //params.put("orderId")
-    }
-
-
-
 
     /**
      * main
      * @param args
      */
     public static void main(String[] args)throws Exception {
-        //System.out.println(HttpClientUtil.doGet("https://reseller-api.netnut.io?loginEmail=ascdda4@gmail.com&loginPassword=ascdda4@gmail.com"));
-      /* new NetnutUtils().showCustomerFlowRate(165323).stream().forEach(n->{
-           System.out.println(n.getUsed());
-       });*/
-       // new NetnutUtils().ApportionFlowRate(165323,2);
-        //new NetnutUtils().getAllCustomers();
-        //new NetnutUtils().getPackage();
-        /*new NetnutUtils().findIPs("de").stream().forEach(n->{
-            System.out.println(n);
-        });*/
-        //System.out.println(new NetnutUtils().addCustomer());
-        //new NetnutUtils().showCustomerFlowRate(165487);
+        NetnutUtils utils=new NetnutUtils();
+        //创建用户
+        String customerId=utils.addCustomer();
+        //分配流量
+        Boolean flag=utils.apportionFlowRate(new Integer(customerId),1);
         //生成动态代理
-
+        new NetnutUtils().getDynamicProxy(customerId,"us").stream().forEach(n->{
+            System.out.println(n);
+        });
 
         //生成静态代理
-        new NetnutUtils().getDynamicProxy("165323","us").stream().forEach(n->{
+        new NetnutUtils().getStaticProxy(customerId,"us").stream().forEach(n->{
             System.out.println(n);
         });
     }
@@ -167,7 +152,7 @@ public class NetnutUtils {
      * @param allocation 流量（G）
      * @return
      */
-    public Boolean ApportionFlowRate(int customerId,int allocation){
+    public Boolean apportionFlowRate(int customerId,int allocation){
         Map<String,String> params=new HashMap<>();
         params.put("loginEmail",ContentKey.NETNUT_LOGIN_EMAIL);
         params.put("loginPassword",ContentKey.NETNUT_LOGIN_PASSWORD);
