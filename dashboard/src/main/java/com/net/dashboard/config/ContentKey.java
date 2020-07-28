@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 
 public class ContentKey {
     public  static  String CLIENT_ID="709750085726240849";
-    public static String TOKEN="NzA5NzUwMDg1NzI2MjQwODQ5.Xxly1g.hNpds706kusPr6gOwTdc8LHk9Ec";
+    public static String TOKEN="NzA5NzUwMDg1NzI2MjQwODQ5.XrqcRg.FC3ioAnggGmi_mHyzhOEHu58gK8";
     public static final String CLIENT_SECRET="zZD6d_EeP4W2U8OA8M9wKqclZS9dh4uL";
     public static final String SCOPE="identify guilds.join";
 
     public static final String GRANT_TYPE="authorization_code";
 
-    public static final String OAUTH_CLIENT_CALLBACK="http://3.88.243.220:8081/dashboard/auth/callback";
+    public static final String OAUTH_CLIENT_CALLBACK="https://thinkchen.top/auth/callback";
     public static final String OAUTH_CLIENT_AUTHORIZE="https://discord.com/oauth2/authorize";
     public static final String OAUTH_CLIENT_TOKEN="https://discord.com/api/oauth2/token";
 
@@ -33,6 +33,6 @@ public class ContentKey {
     public static final String NETNUT_GET_ALL_CUSTOMERS="https://reports.netnut.io/api/aff/customers";
     public static final String NETNUT_ADD_CUSTOMER="https://reseller-api.netnut.io/api/aff/customers";
     public static final String NETNUT_ADD_FLOW_RATE="https://reseller-api.netnut.io/api/aff/customer/customer_id/allocate";
-
-
+    public static final String NETNUT_PACKAGES="https://reports.netnut.io/api/aff/servers/dc/get";
+    public static final String NETNUT_SERVER="https://reports.netnut.io/api/aff/servers/dc/getusers";
 }
