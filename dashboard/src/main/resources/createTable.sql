@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `user`(
 	 `is_in_dc` varchar(2) COMMENT '是否在dc服务器中：1.在，2.不在',
    `create_date` DATE COMMENT '创建日期',
 	 PRIMARY key(`id`)
-)
+);
