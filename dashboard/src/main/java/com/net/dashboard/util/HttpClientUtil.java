@@ -3,9 +3,11 @@ package com.net.dashboard.util;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import com.net.dashboard.config.Result;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -80,6 +82,7 @@ public class HttpClientUtil {
             // 创建参数列表
             if (param != null) {
                 List<NameValuePair> paramList = new ArrayList<NameValuePair>();
+                Map<String,Object> map=new HashMap<>();
                 for (String key : param.keySet()) {
                     paramList.add(new BasicNameValuePair(key, param.get(key)));
                 }
@@ -88,6 +91,11 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Content-type","application/x-www-form-urlencoded");
                 if(token!=null&&(!"".equals(token))){
+                    for(String key:param.keySet()){
+                        map.put(key,param.get(key));
+                    }
+                    JSONObject json=new JSONObject(map);
+                    httpPost.setEntity(new StringEntity(json.toJSONString()));
                     httpPost.addHeader("Authorization","Bearer "+token);
                 }
             }
