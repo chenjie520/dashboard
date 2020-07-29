@@ -1,7 +1,6 @@
 package com.net.dashboard.config;
 
 
-import org.springframework.stereotype.Component;
 
 /**
  *@Author chen_jie
@@ -25,8 +24,10 @@ public class ContentKey {
 
 
     /**
-    * netnut
-    */
+     * netnut
+     * https://l.netnut.io/reseller-api
+     * https://drive.google.com/file/d/1leFblBH5bWv2dk74r4TVczXc1Y2njuNZ/view
+     */
     public static final String NETNUT_LOGIN_EMAIL="ascdda4@gmail.com";
     public static final String NETNUT_LOGIN_PASSWORD="bMXbMqlR";
     public static final String NETNUT_GET_MY_USEAGE="https://reseller-api.netnut.io/api/aff/usage";
@@ -35,4 +36,14 @@ public class ContentKey {
     public static final String NETNUT_ADD_FLOW_RATE="https://reseller-api.netnut.io/api/aff/customer/customer_id/allocate";
     public static final String NETNUT_PACKAGES="https://reports.netnut.io/api/aff/servers/dc/get";
     public static final String NETNUT_SERVER="https://reports.netnut.io/api/aff/servers/dc/getusers";
+
+    /**
+     * cheap
+     * https://documenter.getpostman.com/view/5861128/SWE6ZxQN?version=latest#cabdcf6d-9f6a-4660-8972-73d7e30520d9
+     */
+    public static final String CHEAP_TOKEN="b52fd416-cf1c-49e0-9045-60cbc1ca8c96";
+    public static final String CHEAP_GETUSERINFON="https://reseller.proxy-cheap.com/reseller/my_info";
+    public static final String CHEAP_CREATEUSER="https://reseller.proxy-cheap.com/reseller/sub_users/create";
+    public static final String CHEAP_ADDBALANCE="https://reseller.proxy-cheap.com/reseller/sub_users/give_balance";
+    public static final String CHEAP_SHOWBALANCE="https://reseller.proxy-cheap.com/reseller/sub_users/view_single";
 }
