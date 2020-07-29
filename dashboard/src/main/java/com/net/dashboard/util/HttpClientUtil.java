@@ -69,7 +69,7 @@ public class HttpClientUtil {
         return doGet(url, null,null);
     }
 
-    public static String doPost(String url, Map<String, String> param) {
+    public static String doPost(String url, Map<String, String> param,String token) {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse response = null;
@@ -87,6 +87,9 @@ public class HttpClientUtil {
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(paramList);
                 httpPost.setEntity(entity);
                 httpPost.setHeader("Content-type","application/x-www-form-urlencoded");
+                if(token!=null&&(!"".equals(token))){
+                    httpPost.addHeader("Authorization","Bearer "+token);
+                }
             }
             // 执行http请求
             response = httpClient.execute(httpPost);
@@ -105,7 +108,7 @@ public class HttpClientUtil {
     }
 
     public static String doPost(String url) {
-        return doPost(url, null);
+        return doPost(url, null,null);
     }
 
     public static String doPostJson(String url, String json) {
