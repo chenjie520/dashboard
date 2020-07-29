@@ -69,7 +69,7 @@ public class AuthController {
             map.put("redirect_uri",ContentKey.OAUTH_CLIENT_CALLBACK);
             map.put("client_id",ContentKey.CLIENT_ID);
             map.put("scope",ContentKey.SCOPE);
-            String json= HttpClientUtil.doPost(ContentKey.OAUTH_CLIENT_TOKEN,map);
+            String json= HttpClientUtil.doPost(ContentKey.OAUTH_CLIENT_TOKEN,map,null);
             JSONObject  object= JSONObject.parseObject(json);
             Map<String, Object> valueMap = new HashMap<String, Object>();
             valueMap.putAll(object);
