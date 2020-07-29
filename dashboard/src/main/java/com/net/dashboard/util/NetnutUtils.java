@@ -159,7 +159,7 @@ public class NetnutUtils {
         params.put("customer_id",customerId+"");
         params.put("allocation",allocation+"");
         String url=ContentKey.NETNUT_ADD_FLOW_RATE.replaceAll("customer_id",customerId+"");
-        String data=HttpClientUtil.doPost(url,params);
+        String data=HttpClientUtil.doPost(url,params,null);
         String result=JSONObject.parseObject(JSONObject.parseObject(data).get("result").toString()).get("result").toString();
         if(result.equals("true")){
             return true;
@@ -179,7 +179,7 @@ public class NetnutUtils {
         params.put("customer_country_code","us");
         params.put("loginEmail",ContentKey.NETNUT_LOGIN_EMAIL);
         params.put("loginPassword",ContentKey.NETNUT_LOGIN_PASSWORD);
-        String data= HttpClientUtil.doPost(ContentKey.NETNUT_ADD_CUSTOMER,params);
+        String data= HttpClientUtil.doPost(ContentKey.NETNUT_ADD_CUSTOMER,params,null);
         String customer = JSONObject.parseObject(JSONObject.parseObject(data).get("result").toString()).get("customer").toString();
         JSONObject jsonObject = JSONObject.parseObject(customer);
         Map<String,Object> customerMap=new HashMap<>();
