@@ -71,6 +71,14 @@ public class HttpClientUtil {
         return doGet(url, null,null);
     }
 
+    private static boolean isInt(String str){
+        try{
+            Integer.valueOf(str);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
     public static String doPost(String url, Map<String, String> param,String token) {
         // 创建Httpclient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -92,7 +100,11 @@ public class HttpClientUtil {
                 httpPost.setHeader("Content-type","application/x-www-form-urlencoded");
                 if(token!=null&&(!"".equals(token))){
                     for(String key:param.keySet()){
-                        map.put(key,param.get(key));
+                        if(isInt(param.get(key))){
+                            map.put(key,Integer.parseInt(param.get(key)));
+                        }else {
+                            map.put(key, param.get(key));
+                        }
                     }
                     JSONObject json=new JSONObject(map);
                     httpPost.setEntity(new StringEntity(json.toJSONString()));
@@ -112,7 +124,7 @@ public class HttpClientUtil {
             }
         }
 
-       return resultString;
+        return resultString;
     }
 
     public static String doPost(String url) {
