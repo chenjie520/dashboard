@@ -1,6 +1,7 @@
 package com.net.dashboard.config;
 
 
+import org.springframework.stereotype.Component;
 
 /**
  *@Author chen_jie
@@ -46,4 +47,13 @@ public class ContentKey {
     public static final String CHEAP_CREATEUSER="https://reseller.proxy-cheap.com/reseller/sub_users/create";
     public static final String CHEAP_ADDBALANCE="https://reseller.proxy-cheap.com/reseller/sub_users/give_balance";
     public static final String CHEAP_SHOWBALANCE="https://reseller.proxy-cheap.com/reseller/sub_users/view_single";
+
+    /**
+     *  smart
+     *  https://help.smartproxy.com/reference#get-sub-users
+     *  https://dashboard.smartproxy.com/subusers
+     */
+    public static final String SMART_USERNAME="ascdda3@gmail.com";
+    public static final String SMART_PASSWORD="546763132Zwq";
+    public static final String SMART_GETAUTH="https://api.smartproxy.com/v1/auth";
 }
