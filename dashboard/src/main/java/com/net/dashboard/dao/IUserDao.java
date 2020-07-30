@@ -19,7 +19,7 @@ public interface IUserDao {
     @Select("select id,dc_id as dcId,is_in_dc as isInDc from user where dc_id=#{dcId}")
     User selectUserByDcId(User user);
 
-    @Insert("insert into user(id,dc_id,email,user_name,user_password,is_in_dc,create_date)value(#{id},#{dcId},#{email},#{userName},#{userPassword},#{isInDc},#{createDate})")
+    @Insert("insert into user(id,dc_id,is_in_dc,create_date)value(#{id},#{dcId},#{isInDc},#{createDate})")
     int insertUser(User user);
     @Update("update user set is_in_dc=#{isInDc} where dc_id=#{dcId}")
     int updateUserIsInDc(User user);
