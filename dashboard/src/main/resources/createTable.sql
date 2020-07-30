@@ -33,3 +33,11 @@ CREATE TABLE IF NOT EXISTS `discount`(
 	 `use_date` date comment '使用时间',
 	 PRIMARY key(`id`)
 );
+-- smart 表
+CREATE TABLE IF NOT EXISTS `smart_proxy_server`(
+   `id` INT UNSIGNED AUTO_INCREMENT COMMENT 'id',
+   `city` varchar(32) comment '国家',
+	 `proxy_address` varchar(128) comment '域名地址',
+	 `port` varchar(64) comment '端口号范围',
+	 PRIMARY key(`id`)
+);
