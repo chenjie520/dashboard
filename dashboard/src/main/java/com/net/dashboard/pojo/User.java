@@ -13,9 +13,10 @@ import java.util.Date;
 public class User {
     private int id;
     private String dcId;
-    private String email;
-    private String userName;
-    private String userPassword;
     private String isInDc;      //是否在dc服务器中：1.在，2.不在
     private Date createDate;
+    private String netnutCustomerId;
+    private String cheapUserName;
+    private String smartUserName;
+    private String smartUserPassword;
 }
