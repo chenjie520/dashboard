@@ -23,5 +23,12 @@ public class ProxyTest {
         //3.生成混合的代理
 
         //System.out.println(proxyService.showRemaining("530733982942363650"));
+       /* proxyService.getStaticProxies("us","530733982942363650",300).stream().forEach(n->{
+            System.out.println(n);
+        });*/
+        proxyService.getDynamicProxies("us","530733982942363650",300).stream().forEach(n->{
+            System.out.println(n);
+        });
+
     }
 }
