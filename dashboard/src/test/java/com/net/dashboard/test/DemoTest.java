@@ -31,9 +31,9 @@ public class DemoTest {
     private Environment environment;
     @Test
     public void test1(){
-        userDao.getIds().stream().forEach(n->{
+       /* userDao.getIds().stream().forEach(n->{
             System.out.println(n.getId());
-        });
+        });*/
     }
 
     @Test
