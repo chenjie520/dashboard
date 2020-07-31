@@ -117,7 +117,7 @@ public class NetnutUtils {
             for(int i=1;i<list.size()+1;i++){
                 proxies.add("snkrs-us-s"+i+".netnut.io:"+port+":"+netnuts.get(0).getLoginName()+":"+netnuts.get(0).getLoginPwd());
                 sum++;
-                if(sum>=count){
+                if(sum>=count-1){
                     return proxies;
                 }
             }
@@ -144,7 +144,7 @@ public class NetnutUtils {
         if(netnuts!=null||netnuts.size()>0){
             for(int i=0;i<list.size();i++){
                 proxies.add(list.get(i)+":"+port+":"+netnuts.get(0).getLoginName()+":"+netnuts.get(0).getLoginPwd());
-                if(sum>=count){
+                if(sum>=count-1){
                     return proxies;
                 }else{
                     sum++;
