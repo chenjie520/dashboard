@@ -2,10 +2,11 @@ package com.net.dashboard.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Order {
+public class Order implements Serializable {
     private int id;
     private String dcId;
     //'购买时间'
