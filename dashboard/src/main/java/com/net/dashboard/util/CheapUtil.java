@@ -127,10 +127,11 @@ public class CheapUtil {
         //System.out.println(new CheapUtil().addBalance(10,username));
         //查看子用户剩余
         //静态代理
-        new CheapUtil().gernateDynamicCheapProxies(10,"21proxiesxzdddd","us").stream().forEach(n->{
+        /*new CheapUtil().gernateDynamicCheapProxies(10,"21proxiesxzdddd","us").stream().forEach(n->{
             System.out.println(n);
-        });
+        });*/
         //生成代理
+        System.out.println(1*1.00/300);
     }
     private static String chooseCountry(String code){
         switch (code){
