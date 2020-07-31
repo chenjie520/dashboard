@@ -40,3 +40,12 @@ CREATE TABLE IF NOT EXISTS `smart_proxy_server`(
 	 `port` varchar(64) comment '端口号范围',
 	 PRIMARY key(`id`)
 );
+INSERT INTO `smart_proxy_server` VALUES (1, 'us', 'us.smartproxy.com', '10001-29999');
+INSERT INTO `smart_proxy_server` VALUES (2, 'uk', 'ngb.smartproxy.com', '30001-49999');
+INSERT INTO `smart_proxy_server` VALUES (3, 'ca', 'ca.smartproxy.com', '20001-29999');
+INSERT INTO `smart_proxy_server` VALUES (4, 'aus', 'au.smartproxy.com', '30001-39999');
+INSERT INTO `smart_proxy_server` VALUES (5, 'sg', 'sg.smartproxy.com', '10001-19999');
+INSERT INTO `smart_proxy_server` VALUES (6, 'jp', 'jp.smartproxy.com', '30001-39999');
+INSERT INTO `smart_proxy_server` VALUES (7, 'chn', 'cn.smartproxy.com', '30001-39999');
+INSERT INTO `smart_proxy_server` VALUES (8, 'ger', 'de.smartproxy.com', '20001-29999');
+INSERT INTO `smart_proxy_server` VALUES (9, 'sk', 'kr.smartproxy.com', '10001-19999');
