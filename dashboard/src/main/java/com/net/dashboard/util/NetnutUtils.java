@@ -91,12 +91,12 @@ public class NetnutUtils {
         //分配流量
         Boolean flag=utils.apportionFlowRate(new Integer(customerId),1);
         //生成动态代理
-        new NetnutUtils().getDynamicProxy(customerId,"us").stream().forEach(n->{
+        new NetnutUtils().getDynamicProxy(customerId,"us",100).stream().forEach(n->{
             System.out.println(n);
         });
 
         //生成静态代理
-        new NetnutUtils().getStaticProxy(customerId,"us").stream().forEach(n->{
+        new NetnutUtils().getStaticProxy(customerId,"us",100).stream().forEach(n->{
             System.out.println(n);
         });
     }
@@ -107,14 +107,19 @@ public class NetnutUtils {
      * @param code
      * @return
      */
-    public List<String> getDynamicProxy(String customerId,String code){
+    public List<String> getDynamicProxy(String customerId,String code,int count){
         List<String> proxies=new ArrayList<>();
         NetnutUtils utils=new NetnutUtils();
         List<String> list=utils.findIPs(code);
         List<Netnut> netnuts=utils.showCustomerFlowRate(new Integer(customerId));
+        int sum=0;
         if(netnuts!=null||netnuts.size()>0){
             for(int i=1;i<list.size()+1;i++){
                 proxies.add("snkrs-us-s"+i+".netnut.io:"+port+":"+netnuts.get(0).getLoginName()+":"+netnuts.get(0).getLoginPwd());
+                sum++;
+                if(sum>=count){
+                    return proxies;
+                }
             }
         }
         if(proxies!=null&&proxies.size()>0){
@@ -130,14 +135,20 @@ public class NetnutUtils {
      * @param code
      * @return
      */
-    public List<String> getStaticProxy(String customerId,String code){
+    public List<String> getStaticProxy(String customerId,String code,int count){
         List<String> proxies=new ArrayList<>();
         NetnutUtils utils=new NetnutUtils();
         List<String> list=utils.findIPs(code);
         List<Netnut> netnuts=utils.showCustomerFlowRate(new Integer(customerId));
+        int sum=0;
         if(netnuts!=null||netnuts.size()>0){
             for(int i=0;i<list.size();i++){
                 proxies.add(list.get(i)+":"+port+":"+netnuts.get(0).getLoginName()+":"+netnuts.get(0).getLoginPwd());
+                if(sum>=count){
+                    return proxies;
+                }else{
+                    sum++;
+                }
             }
         }
         if(proxies!=null&&proxies.size()>0){
