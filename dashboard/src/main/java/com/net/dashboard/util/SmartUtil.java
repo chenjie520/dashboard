@@ -56,10 +56,10 @@ public class SmartUtil {
 
         if (200 <= httpConn.getResponseCode() && httpConn.getResponseCode() <= 299) {
             BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-            System.out.print(br.lines().collect(Collectors.joining()));
+            //System.out.print(br.lines().collect(Collectors.joining()));
         } else {
             BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getErrorStream()));
-            System.out.print(br.lines().collect(Collectors.joining()));
+            //System.out.print(br.lines().collect(Collectors.joining()));
         }
 
         httpConn.disconnect();
@@ -101,10 +101,11 @@ public class SmartUtil {
 
             if (200 <= httpConn.getResponseCode() && httpConn.getResponseCode() <= 299) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
+                return true;
             } else {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getErrorStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
             }
 
             httpConn.disconnect();
@@ -139,7 +140,7 @@ public class SmartUtil {
                 return list;
             } else {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getErrorStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
             }
 
             httpConn.disconnect();
@@ -173,10 +174,10 @@ public class SmartUtil {
 
             if (200 <= httpConn.getResponseCode() && httpConn.getResponseCode() <= 299) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
             } else {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getErrorStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
             }
 
             httpConn.disconnect();
@@ -224,14 +225,14 @@ public class SmartUtil {
 
             if (200 <= httpConn.getResponseCode() && httpConn.getResponseCode() <= 299) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
                 Map<String,String> map=new HashMap<>();
                 map.put("sub_username",sub_username);
                 map.put("sub_password",user_password);
                 return map;
             } else {
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getErrorStream()));
-                System.out.print(br.lines().collect(Collectors.joining()));
+                //System.out.print(br.lines().collect(Collectors.joining()));
             }
 
             httpConn.disconnect();
