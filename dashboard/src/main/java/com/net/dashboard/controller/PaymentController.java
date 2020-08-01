@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Calendar;
@@ -116,7 +117,7 @@ public class PaymentController {
      */
     @PostMapping("/create-charge")
     public @ResponseBody
-    Response createCharge(@Param("buyType")String buyType,@Param("email") String email, @Param("token") String token,@Param("discount")String discount,@Param("dcId")String dcId,@Param("buyPrice")String buyPrice) {
+    Response createCharge(@RequestParam("buyType")String buyType, @RequestParam("email") String email, @RequestParam("token") String token, @RequestParam("discount")String discount, @RequestParam("dcId")String dcId, @RequestParam("buyPrice")String buyPrice) {
         //discount
         //validate data
         if (token == null) {
