@@ -4,6 +4,7 @@ import com.net.dashboard.pojo.Discount;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface IDiscountDao {
 
     @Insert("insert into discount(id,number,type,due_date,dc_id,create_date,use_date)value(#{id},#{number},#{type},#{dueDate},#{dcId},#{createDate},#{useDate})")
     int insertDiscount(Discount discount);
+    @Update("update discount set dc_id=#{dcId} where number=#{number} ")
+    int updateDiscount(Discount discount);
 }
