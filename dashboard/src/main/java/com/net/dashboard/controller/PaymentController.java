@@ -1,6 +1,8 @@
 package com.net.dashboard.controller;
 
+import com.net.dashboard.dao.IDiscountDao;
 import com.net.dashboard.dao.IOrderDao;
+import com.net.dashboard.pojo.Discount;
 import com.net.dashboard.pojo.Order;
 import com.net.dashboard.pojo.Response;
 import com.net.dashboard.service.ProxyService;
@@ -13,11 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class PaymentController {
@@ -26,6 +28,8 @@ public class PaymentController {
     private IOrderDao orderDao;
     @Autowired
     private ProxyService proxyService;
+    @Autowired
+    private IDiscountDao discountDao;
     @Value("${stripe.keys.public}")
     private String API_PUBLIC_KEY;
 
@@ -117,13 +121,28 @@ public class PaymentController {
      */
     @PostMapping("/create-charge")
     public @ResponseBody
-    Response createCharge(@RequestParam("buyType")String buyType, @RequestParam("email") String email, @RequestParam("token") String token, @RequestParam("discount")String discount, @RequestParam("dcId")String dcId, @RequestParam("buyPrice")String buyPrice) {
+    Response createCharge(@Param("buyType")String buyType,@Param("email") String email, @Param("token") String token,@Param("discount")String discount,@Param("dcId")String dcId,@Param("buyPrice")String buyPrice) {
         //discount
         //validate data
         if (token == null) {
             return new Response(false, "Stripe payment token is missing. Please, try again later.");
         }
 
+        if((!"".equals(discount))&&discount!=null) {
+            Discount discount1 = new Discount();
+            discount1.setNumber(discount);
+            discount1.setDcId(dcId);
+            List<Discount> list = discountDao.selectDiscountByNumber(discount1);
+            if (list == null || list.size() == 0) {
+                return new Response(false, "this discount can not use");
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getDcId() != null || (!list.get(i).getDcId().equals(""))) {
+                    return new Response(false, "this discount can not use");
+                }
+            }
+            discountDao.updateDiscount(discount1);
+        }
         //create charge将美元转换成美分
         String chargeId = stripeService.createCharge(email, token,new Integer((int) (Float.parseFloat(buyPrice)*100)) );
         if (chargeId == null) {
