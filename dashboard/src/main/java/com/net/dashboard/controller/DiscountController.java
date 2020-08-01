@@ -77,4 +77,12 @@ public class DiscountController {
             }
             return sb.toString();
     }
+
+    @RequestMapping("/judgeDiscount")
+    public @ResponseBody Response judgeDiscount(@RequestParam("discount")String discount){
+        Discount discount1=new Discount();
+        discount1.setNumber(discount);
+        return new Response(true,discountDao.selectDiscountByNumber(discount1).get(0).toString());
+    }
+
 }
