@@ -1,5 +1,6 @@
 package com.net.dashboard.service;
 
+import com.net.dashboard.dao.IOrderDao;
 import com.net.dashboard.dao.ISmartProxyServer;
 import com.net.dashboard.dao.IUserDao;
 import com.net.dashboard.pojo.*;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -21,6 +23,8 @@ public class ProxyService {
     private IUserDao userDao;
     @Autowired
     private ISmartProxyServer smartProxyServer;
+    @Autowired
+    private IOrderDao orderDao;
 
     /**
      * 生成动态代理
@@ -76,9 +80,11 @@ public class ProxyService {
                     String port = smartProxyServers.get(0).getPort();
                     String[] dd = port.split("-");
                     int max = new Integer(dd[0]) + count - list.size();
+                    List<String> dda=new ArrayList<>();
                     for (int i = new Integer(dd[0]); i < max; i++) {
-                        list.add(smartProxyServers.get(0).getProxyAddress() + ":" + i + ":" + user.getSmartUserName() + ":" + user.getSmartUserPassword());
+                        dda.add(smartProxyServers.get(0).getProxyAddress() + ":" + i + ":" + user.getSmartUserName() + ":" + user.getSmartUserPassword());
                     }
+                    list.addAll(dda);
                 }
             }else{
                 //2.通过数据库里面的个人信息去判断是否还有剩余流量，然后生成代理
@@ -165,9 +171,11 @@ public class ProxyService {
                         String port = smartProxyServers.get(0).getPort();
                         String[] dd = port.split("-");
                         int max = new Integer(dd[0]) + count - list.size();
+                        List<String> dda=new ArrayList<>();
                         for (int i = new Integer(dd[0]); i < max; i++) {
-                            list.add(getAddress(smartProxyServers.get(0).getProxyAddress()) + ":" + i + ":" + user.getSmartUserName() + ":" + user.getSmartUserPassword());
+                            dda.add(getAddress(smartProxyServers.get(0).getProxyAddress()) + ":" + i + ":" + user.getSmartUserName() + ":" + user.getSmartUserPassword());
                         }
+                        list.addAll(dda);
                     }
                 }
             }else {
@@ -211,6 +219,21 @@ public class ProxyService {
         }
     }
 
+
+    public Double showAllData(String dcId){
+        Double dd=0d;
+        List<Order> list=orderDao.selectOrderByDcId(new Order(){
+            @Override
+            public String getDcId(){
+                return dcId;
+            }
+        });
+        for(int i=0;i<list.size();i++){
+            dd+=new Double(list.get(i).getBuyType());
+        }
+        return dd;
+
+    }
     /**
      * 获取剩余流量
      * @param dcId
