@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -56,6 +54,10 @@ public class PaymentController {
         return "charge";
     }
 
+    @RequestMapping("/getKey")
+    public @ResponseBody Response getKey(){
+        return new Response(true,API_PUBLIC_KEY);
+    }
     /*========== REST APIs for Handling Payments ===================*/
 
     @PostMapping("/create-subscription")

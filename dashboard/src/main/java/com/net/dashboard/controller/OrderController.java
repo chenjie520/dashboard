@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -16,11 +15,11 @@ public class OrderController {
     @Autowired
     private IOrderDao orderDao;
     @RequestMapping("getOrders")
-    public @ResponseBody Object getOrder(@RequestParam("dcId")String dcId){
+    public @ResponseBody Object getOrder(@Param("dcId")String dcId){
         if(dcId==null||"".equals(dcId)){
             return new Response(false,"dcId is not found");
         }
-        return new Response(true,orderDao.selectOrderByDcId(new Order(){
+        return new Response(true,orderDao.selectAllOrder(new Order(){
             @Override
             public String getDcId(){
                 return dcId;
