@@ -3,6 +3,7 @@ package com.net.dashboard.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.net.dashboard.config.ContentKey;
 import com.net.dashboard.dao.IUserDao;
+import com.net.dashboard.pojo.Order;
 import com.net.dashboard.service.ProxyService;
 import com.net.dashboard.util.HttpClientUtil;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -119,6 +121,7 @@ public class AuthController {
             hashMap.put("dcName",dcName);
             hashMap.put("isInDc",judgeUserStatus(dcId));
             hashMap.put("remaining",proxyService.showRemaining(dcId));
+            hashMap.put("total",proxyService.showAllData(dcId));
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("result",hashMap);
             request.getSession().setAttribute("result",hashMap);
